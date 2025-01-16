@@ -124,7 +124,7 @@ const gameController = (function (gameBoard) {
 })(gameBoard);
 
 
-function createPlayer(name, marker) {
+function createPlayer(name, marker, id) {
     function getName() {
         return name;
     }
@@ -137,10 +137,15 @@ function createPlayer(name, marker) {
         return marker;
     }
 
+    function playTurn(i, j) {
+        gameController.playTurn(i, j, id);
+    }
+
     return {
         getName,
         setName,
         getMarker,
+        playTurn,
     }
 
 }
