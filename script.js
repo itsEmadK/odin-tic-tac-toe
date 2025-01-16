@@ -22,7 +22,7 @@ const gameBoard = (function () {
 
     //Return false if cell is occupied.
     function setCell(i, j, player) {
-        if (board[i][j] !== null) {
+        if (board[i][j] === null) {
             board[i][j] = player;
             return true;
         } else {
@@ -37,6 +37,7 @@ const gameBoard = (function () {
         clearBoard,
         setCell,
         getCell,
+        board, //Just exposing it for test.
     };
 })()
 
@@ -138,7 +139,7 @@ function createPlayer(name, marker, id) {
     }
 
     function playTurn(i, j) {
-        gameController.playTurn(i, j, id);
+        return gameController.playTurn(i, j, id);
     }
 
     return {
