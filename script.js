@@ -56,6 +56,18 @@ const gameController = (function () {
             }
 
         }
+
+        //Check columns:
+        for (let j = 0; j < 3; j++) {
+            if (
+                gameBoard.getCell(0, j) ===
+                gameBoard.getCell(1, j) ===
+                gameBoard.getCell(2, j)
+            ) {
+                return gameBoard.getCell(0, j);
+            }
+
+        }
     }
 
     function playTurn(i, j, player) {
