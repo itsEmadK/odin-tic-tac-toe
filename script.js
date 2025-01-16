@@ -122,3 +122,20 @@ const gameController = (function (gameBoard) {
     };
 
 })(gameBoard);
+
+
+function createPlayer(name, marker) {
+    function getName() {
+        return name;
+    }
+
+    function setName(newName) {
+        name = newName;
+    }
+
+    function getMarker() {
+        return marker;
+    }
+    
+
+}
