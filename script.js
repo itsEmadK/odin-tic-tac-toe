@@ -40,7 +40,7 @@ const gameBoard = (function () {
     };
 })()
 
-const gameController = (function () {
+const gameController = (function (gameBoard) {
 
     let turn = 1;
 
@@ -116,4 +116,4 @@ const gameController = (function () {
         }
     }
 
-})();
+})(gameBoard);
