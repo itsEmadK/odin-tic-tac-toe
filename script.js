@@ -29,8 +29,13 @@ const gameBoard = (function () {
             return false; //Cell is occupied.
         }
     }
+
+    function getCell(i, j) {
+        return board[i][j];
+    }
     return {
         clearBoard,
         setCell,
+        getCell,
     };
 })()
