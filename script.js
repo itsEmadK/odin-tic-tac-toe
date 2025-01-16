@@ -19,7 +19,18 @@ const gameBoard = (function () {
             }
         }
     }
+
+    //Return false if cell is occupied.
+    function setCell(i, j, player) {
+        if (board[i][j] !== null) {
+            board[i][j] = player;
+            return true;
+        } else {
+            return false; //Cell is occupied.
+        }
+    }
     return {
         clearBoard,
+        setCell,
     };
 })()
