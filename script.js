@@ -12,4 +12,14 @@ const gameBoard = (function () {
             board.push(temp);
         }
     }
+    function clearBoard() {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                board[i][j] = null;
+            }
+        }
+    }
+    return {
+        clearBoard,
+    };
 })()
