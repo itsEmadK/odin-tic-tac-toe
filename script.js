@@ -68,6 +68,28 @@ const gameController = (function () {
             }
 
         }
+
+        //Check main diagonal:
+        if (
+            gameBoard.getCell(0, 0) ===
+            gameBoard.getCell(1, 1) ===
+            gameBoard.getCell(2, 2)
+        ) {
+            return gameBoard.getCell(0, 0);
+        }
+
+
+        //Check secondary diagonal:
+        if (
+            gameBoard.getCell(2, 0) ===
+            gameBoard.getCell(1, 1) ===
+            gameBoard.getCell(0, 2)
+        ) {
+            return gameBoard.getCell(0, 0);
+        }
+
+
+
     }
 
     function playTurn(i, j, player) {
