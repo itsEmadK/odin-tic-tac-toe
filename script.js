@@ -39,3 +39,22 @@ const gameBoard = (function () {
         getCell,
     };
 })()
+
+const gameController = (function () {
+
+    let turn = 1;
+
+    function playTurn(i, j, player) {
+        if (turn !== player) {
+            return false;
+        } else {
+            const isMoveValid = gameBoard.setCell(i, j, player);
+            if (isMoveValid) {
+                turn = (turn === 1) ? 2 : 1;
+            }
+            return isMoveValid;
+        }
+    }
+
+
+})();
