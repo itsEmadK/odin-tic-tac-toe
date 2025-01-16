@@ -49,9 +49,8 @@ const gameController = (function (gameBoard) {
         //Check rows:
         for (let i = 0; i < 3; i++) {
             if (
-                gameBoard.getCell(i, 0) ==
-                gameBoard.getCell(i, 1) ==
-                gameBoard.getCell(i, 2)
+                gameBoard.getCell(i, 0) === gameBoard.getCell(i, 1) &&
+                gameBoard.getCell(i, 1) === gameBoard.getCell(i, 2)
             ) {
                 return gameBoard.getCell(i, 0);
             }
@@ -61,9 +60,8 @@ const gameController = (function (gameBoard) {
         //Check columns:
         for (let j = 0; j < 3; j++) {
             if (
-                gameBoard.getCell(0, j) ==
-                gameBoard.getCell(1, j) ==
-                gameBoard.getCell(2, j)
+                gameBoard.getCell(0, j) === gameBoard.getCell(1, j) &&
+                gameBoard.getCell(1, j) === gameBoard.getCell(2, j)
             ) {
                 return gameBoard.getCell(0, j);
             }
@@ -72,9 +70,9 @@ const gameController = (function (gameBoard) {
 
         //Check main diagonal:
         if (
-            gameBoard.getCell(0, 0) ==
-            gameBoard.getCell(1, 1) ==
-            gameBoard.getCell(2, 2)
+            gameBoard.getCell(0, 0) === gameBoard.getCell(1, 1) &&
+            gameBoard.getCell(1, 1) === gameBoard.getCell(2, 2
+            )
         ) {
             return gameBoard.getCell(0, 0);
         }
@@ -82,9 +80,8 @@ const gameController = (function (gameBoard) {
 
         //Check secondary diagonal:
         if (
-            gameBoard.getCell(2, 0) ==
-            gameBoard.getCell(1, 1) ==
-            gameBoard.getCell(0, 2)
+            gameBoard.getCell(2, 0) === gameBoard.getCell(1, 1) &&
+            gameBoard.getCell(1, 1) === gameBoard.getCell(0, 2)
         ) {
             return gameBoard.getCell(0, 0);
         }
