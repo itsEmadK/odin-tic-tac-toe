@@ -89,6 +89,18 @@ const gameController = (function () {
         }
 
 
+        //Check for tie:
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (gameBoard.getCell(i, j) === null) {
+                    return null; //Game is not finished yet.
+                }
+            }
+        }
+
+
+        return 0; //It's a tie.
+
 
     }
 
