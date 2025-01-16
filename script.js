@@ -44,9 +44,9 @@ const gameBoard = (function () {
     };
 })()
 
-const gameController = (function (gameBoard, player1ID, player2ID) {
+const gameController = (function (gameBoard) {
 
-    let turn = player1ID;
+    let turn = 1;
 
     function getGameResult() {
         //Check rows:
@@ -111,7 +111,7 @@ const gameController = (function (gameBoard, player1ID, player2ID) {
         } else {
             const isMoveValid = gameBoard.setCell(i, j, player);
             if (isMoveValid) {
-                turn = (turn === player1ID) ? player2ID : player1ID;
+                turn = (turn === 1) ? 2 : 1;
             }
             return isMoveValid;
         }
@@ -119,7 +119,7 @@ const gameController = (function (gameBoard, player1ID, player2ID) {
 
     function reset() {
         gameBoard.clearBoard();
-        turn = player1ID;
+        turn = 1;
     }
 
     return {
@@ -128,7 +128,7 @@ const gameController = (function (gameBoard, player1ID, player2ID) {
         reset,
     };
 
-})(gameBoard, player1.getID(), player2.getID());
+})(gameBoard);
 
 
 function createPlayer(name, marker, id) {
