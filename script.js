@@ -44,6 +44,20 @@ const gameController = (function () {
 
     let turn = 1;
 
+    function getGameResult() {
+        //Check rows:
+        for (let i = 0; i < 3; i++) {
+            if (
+                gameBoard.getCell(i, 0) ===
+                gameBoard.getCell(i, 1) ===
+                gameBoard.getCell(i, 2)
+            ) {
+                return gameBoard[getCell(i, 0)];
+            }
+
+        }
+    }
+
     function playTurn(i, j, player) {
         if (turn !== player) {
             return false;
@@ -55,6 +69,5 @@ const gameController = (function () {
             return isMoveValid;
         }
     }
-
 
 })();
