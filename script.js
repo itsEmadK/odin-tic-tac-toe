@@ -136,6 +136,11 @@ function createPlayer(name, marker) {
     function getMarker() {
         return marker;
     }
-    
+
+    return {
+        getName,
+        setName,
+        getMarker,
+    }
 
 }
