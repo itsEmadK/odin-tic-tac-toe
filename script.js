@@ -1,3 +1,6 @@
+const player1 = createPlayer("Emad", "X", 1);
+const player2 = createPlayer("Sag", "O", 2);
+
 const gameBoard = (function () {
     let board;
     initBoard();
@@ -41,9 +44,9 @@ const gameBoard = (function () {
     };
 })()
 
-const gameController = (function (gameBoard) {
+const gameController = (function (gameBoard, player1ID, player2ID) {
 
-    let turn = 1;
+    let turn = player1ID;
 
     function getGameResult() {
         //Check rows:
@@ -108,7 +111,7 @@ const gameController = (function (gameBoard) {
         } else {
             const isMoveValid = gameBoard.setCell(i, j, player);
             if (isMoveValid) {
-                turn = (turn === 1) ? 2 : 1;
+                turn = (turn === player1ID) ? player2ID : player1ID;
             }
             return isMoveValid;
         }
@@ -119,7 +122,7 @@ const gameController = (function (gameBoard) {
         playTurn
     };
 
-})(gameBoard);
+})(gameBoard, player1.getID(), player2.getID());
 
 
 function createPlayer(name, marker, id) {
@@ -139,31 +142,19 @@ function createPlayer(name, marker, id) {
         return gameController.playTurn(i, j, id);
     }
 
+    function getID() {
+        return id;
+    }
+
     return {
         getName,
         setName,
         getMarker,
         playTurn,
+        getID,
     }
 
 }
-
-
-const player1 = createPlayer("Emad", "X", 1);
-const player2 = createPlayer("Sag", "O", 2);
-showBoard();
-console.log(player1.playTurn(0, 0));
-showBoard();
-console.log(player2.playTurn(0, 1));
-showBoard();
-console.log(player1.playTurn(1, 1));
-showBoard();
-console.log(player2.playTurn(2, 1));
-showBoard();
-console.log(player1.playTurn(2, 2));
-showBoard();
-console.log(gameController.getGameResult());
-
 
 
 function showBoard() {
