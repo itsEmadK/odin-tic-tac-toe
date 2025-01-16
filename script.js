@@ -150,3 +150,25 @@ function createPlayer(name, marker, id) {
     }
 
 }
+
+
+const player1 = createPlayer("Emad", "X", 1);
+const player2 = createPlayer("Sag", "O", 2);
+showBoard();
+console.log(player1.playTurn(0, 0));
+showBoard();
+console.log(player2.playTurn(0, 1));
+showBoard();
+console.log(player1.playTurn(1, 1));
+showBoard();
+console.log(player2.playTurn(2, 1));
+showBoard();
+console.log(player1.playTurn(2, 2));
+showBoard();
+console.log(gameController.getGameResult());
+
+
+
+function showBoard() {
+    console.table(gameBoard.board);
+}
