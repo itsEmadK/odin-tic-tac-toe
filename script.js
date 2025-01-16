@@ -117,9 +117,15 @@ const gameController = (function (gameBoard, player1ID, player2ID) {
         }
     }
 
+    function reset() {
+        gameBoard.clearBoard();
+        turn = player1ID;
+    }
+
     return {
         getGameResult,
-        playTurn
+        playTurn,
+        reset,
     };
 
 })(gameBoard, player1.getID(), player2.getID());
