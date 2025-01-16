@@ -116,4 +116,9 @@ const gameController = (function (gameBoard) {
         }
     }
 
+    return {
+        getGameResult,
+        playTurn
+    };
+
 })(gameBoard);
