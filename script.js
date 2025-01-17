@@ -165,6 +165,7 @@ const gameController = (function (gameBoard) {
 const DOMController = (function (gameController, gameBoard, player1, player2) {
 
     const cellsGridDiv = document.querySelector("div.cells-grid");
+    let isGameFinished = false;
 
 
     addHoverListenerToCells();
@@ -208,23 +209,26 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
         }
     }
 
-
     function addHoverListenerToCells() {
         cellsGridDiv.addEventListener("mouseover", (e) => {
-            if ([...e.target.classList].includes("cell")) {
-                const cellDiv = e.target;
-                const turn = gameController.getTurn();
-                if (![...cellDiv.classList].includes("occupied")) {
-                    cellDiv.innerText = turn === 1 ? player1.getMarker() : player2.getMarker();
+            if (!isGameFinished) {
+                if ([...e.target.classList].includes("cell")) {
+                    const cellDiv = e.target;
+                    const turn = gameController.getTurn();
+                    if (![...cellDiv.classList].includes("occupied")) {
+                        cellDiv.innerText = turn === 1 ? player1.getMarker() : player2.getMarker();
+                    }
                 }
             }
         });
 
         cellsGridDiv.addEventListener("mouseout", (e) => {
-            if ([...e.target.classList].includes("cell")) {
-                const cellDiv = e.target;
-                if (![...cellDiv.classList].includes("occupied")) {
-                    cellDiv.innerText = "";
+            if (!isGameFinished) {
+                if ([...e.target.classList].includes("cell")) {
+                    const cellDiv = e.target;
+                    if (![...cellDiv.classList].includes("occupied")) {
+                        cellDiv.innerText = "";
+                    }
                 }
             }
         });
@@ -232,14 +236,23 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
     function addClickListenerToCells() {
         cellsGridDiv.addEventListener("click", (e) => {
-            if ([...e.target.classList].includes("cell")) {
-                const cellDiv = e.target;
-                const [i, j] = [cellDiv.dataset.i, cellDiv.dataset.j];
-                const turn = gameController.getTurn();
-                const player = turn === 1 ? player1 : player2;
-                const isCellAvailable = player.playTurn(i, j);
-                if (isCellAvailable) {
-                    updateCellsGrid();
+            if (!isGameFinished) {
+                if ([...e.target.classList].includes("cell")) {
+                    const cellDiv = e.target;
+                    const [i, j] = [cellDiv.dataset.i, cellDiv.dataset.j];
+                    const turn = gameController.getTurn();
+                    const player = turn === 1 ? player1 : player2;
+                    const isCellAvailable = player.playTurn(i, j);
+                    if (isCellAvailable) {
+                        if (
+                            gameController.getGameResult() === 0 ||
+                            gameController.getGameResult() === 1 ||
+                            gameController.getGameResult() === 2
+                        ) {
+                            isGameFinished = true;
+                        }
+                        updateCellsGrid();
+                    }
                 }
             }
         });
@@ -250,12 +263,6 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     };
 
 })(gameController, gameBoard, player1, player2);
-
-
-
-console.log(player1.playTurn(0, 1));
-// showBoard();
-DOMController.updateCellsGrid();
 
 
 function createPlayer(name, marker, id) {
