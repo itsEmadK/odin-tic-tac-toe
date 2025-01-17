@@ -17,9 +17,9 @@
     --body-bg-color: #c5c3c6;
     --player-info-font-color: #46494b;
     --finished-cell-bg-color: rgb(232, 232, 232);
-    --restart-button-padding: 16px;
-    --restart-button-margin-top: 32px;
-    --restart-button-font-size: 3rem;
+    --restart-button-padding: 0.5em 1em;
+    --restart-button-margin-top: 0.5em;
+    --restart-button-font-size: 2rem;
     --restart-button-border-radius: 8px;
 }
 
@@ -30,7 +30,7 @@ body {
 
 
 header {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     padding: 0.3em;
     text-align: center;
     background-color: var(--header-bg-color);
@@ -72,7 +72,7 @@ header {
 
 .cells-grid-container {
     display: grid;
-    grid-template-columns: 1fr 500px 1fr;
+    grid-template-columns: 1fr 350px 1fr;
     grid-template-areas: ". grid .";
 }
 
@@ -87,7 +87,7 @@ header {
 }
 
 .cell {
-    font-size: 10rem;
+    font-size: 7rem;
     height: auto;
     aspect-ratio: 1;
     background-color: white;
