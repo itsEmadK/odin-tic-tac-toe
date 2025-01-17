@@ -47,3 +47,28 @@ header {
 .players-info-container div[class*="score"] {
     font-weight: bold;
 }
+
+.cells-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: ". grid .";
+}
+
+.cells-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    border: 1px solid var(--header-bg-color);
+    grid-area: grid;
+}
+
+.cell {
+    font-size: 8rem;
+    height: auto;
+    aspect-ratio: 1;
+    background-color: white;
+    border: 1px solid var(--header-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
