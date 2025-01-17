@@ -137,6 +137,7 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
 
     addHoverListenerToCells();
+    addClickListenerToCells();
     updateCellsGrid();
 
     function updateCellsGrid() {
@@ -178,6 +179,21 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                 const cellDiv = e.target;
                 if (![...cellDiv.classList].includes("occupied")) {
                     cellDiv.innerText = "";
+                }
+            }
+        });
+    }
+
+    function addClickListenerToCells() {
+        cellsGridDiv.addEventListener("click", (e) => {
+            if ([...e.target.classList].includes("cell")) {
+                const cellDiv = e.target;
+                const [i, j] = [cellDiv.dataset.i, cellDiv.dataset.j];
+                const turn = gameController.getTurn();
+                const player = turn === 1 ? player1 : player2;
+                const isCellAvailable = player.playTurn(i, j);
+                if (isCellAvailable) {
+                    updateCellsGrid();
                 }
             }
         });
