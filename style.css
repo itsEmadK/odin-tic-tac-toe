@@ -8,3 +8,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+
+:root {
+    --varela-round-regular: varela-round-regular;
+}
+
+
+header {
+    font-size: 3rem;
+    font-family: var(--varela-round-regular);
+    padding: 0.3em;
+    text-align: center;
+}
