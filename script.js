@@ -1,5 +1,5 @@
-const player1 = createPlayer("Emad", "X", 1);
-const player2 = createPlayer("Sag", "O", 2);
+const player1 = createPlayer("Emad", "x", 1);
+const player2 = createPlayer("Sag", "o", 2);
 
 const gameBoard = (function () {
     let board;
@@ -129,6 +129,44 @@ const gameController = (function (gameBoard) {
     };
 
 })(gameBoard);
+
+const DOMController = (function (gameController, gameBoard, player1, player2) {
+
+    const cellsGridDiv = document.querySelector("div.cells-grid");
+
+    function updateCellsGrid() {
+        cellsGridDiv.innerHTML = "";
+        const cellDiv = document.createElement("div");
+        cellDiv.classList.add("cell");
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                const tempCell = cellDiv.cloneNode(true);
+                tempCell.dataset.i = i;
+                tempCell.dataset.j = j;
+                if (gameBoard.getCell(i, j) === 1) {
+                    tempCell.classList.add("occupied")
+                    tempCell.innerText = player1.getMarker();
+                } else if (gameBoard.getCell(i, j) === 2) {
+                    tempCell.classList.add("occupied")
+                    tempCell.innerText = player2.getMarker();
+                }
+                cellsGridDiv.appendChild(tempCell);
+            }
+        }
+    }
+
+    return {
+        updateCellsGrid,
+    };
+
+})(gameController, gameBoard, player1, player2);
+
+
+
+// console.log(player1.playTurn(0, 1));
+// showBoard();
+DOMController.updateCellsGrid();
 
 
 function createPlayer(name, marker, id) {
