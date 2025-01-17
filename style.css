@@ -144,3 +144,8 @@ button.restart:hover {
 button.restart:active {
     background-color: #292f33;
 }
+
+
+footer {
+    justify-self: center;
+}
