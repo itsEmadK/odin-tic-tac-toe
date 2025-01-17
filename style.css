@@ -93,7 +93,7 @@ header {
 }
 
 
-.cell.not-occupied:hover {
+.cell:not(.occupied):hover {
     background-color: var(--header-font-color);
     color: rgb(0 0 0 /30%);
 }
