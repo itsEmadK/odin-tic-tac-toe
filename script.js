@@ -173,45 +173,11 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     const player2NameDiv = document.querySelector(".player2-name");
     let isGameFinished = false;
 
-
-    player1NameDiv.addEventListener("click", () => {
-        editInfoDialog.dataset.player = 1;
-        const nameInput = editInfoDialog.querySelector("input#player-name");
-        nameInput.value = player1.getName();
-        editInfoDialog.showModal();
-    });
-    player2NameDiv.addEventListener("click", () => {
-        editInfoDialog.dataset.player = 2;
-        const nameInput = editInfoDialog.querySelector("input#player-name");
-        nameInput.value = player2.getName();
-        editInfoDialog.showModal();
-    });
-
-    discardInfoButton.addEventListener("click", () => {
-        editInfoDialog.close();
-    });
-
-    saveInfoButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        const form = document.querySelector("dialog.edit-player-info form");
-        const nameInput = document.querySelector("input#player-name");
-        if (form.reportValidity()) {
-            if (+editInfoDialog.dataset.player === 1) {
-                player1.setName(nameInput.value);
-            } else if (+editInfoDialog.dataset.player === 2) {
-                player2.setName(nameInput.value);
-            }
-            updatePlayerInfoSection();
-            form.reset();
-            editInfoDialog.close();
-        }
-    });
-
-
     addHoverListenerToCells();
     addClickListenerToCells();
     updateCellsGrid();
     updatePlayerInfoSection();
+    addDialogRelatedListeners();
 
     resetButton.addEventListener("click", () => {
         cleanTheGameBoard();
@@ -305,6 +271,42 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                         updatePlayerInfoSection();
                     }
                 }
+            }
+        });
+    }
+
+    function addDialogRelatedListeners() {
+
+        player1NameDiv.addEventListener("click", () => {
+            editInfoDialog.dataset.player = 1;
+            const nameInput = editInfoDialog.querySelector("input#player-name");
+            nameInput.value = player1.getName();
+            editInfoDialog.showModal();
+        });
+        player2NameDiv.addEventListener("click", () => {
+            editInfoDialog.dataset.player = 2;
+            const nameInput = editInfoDialog.querySelector("input#player-name");
+            nameInput.value = player2.getName();
+            editInfoDialog.showModal();
+        });
+
+        discardInfoButton.addEventListener("click", () => {
+            editInfoDialog.close();
+        });
+
+        saveInfoButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const form = document.querySelector("dialog.edit-player-info form");
+            const nameInput = document.querySelector("input#player-name");
+            if (form.reportValidity()) {
+                if (+editInfoDialog.dataset.player === 1) {
+                    player1.setName(nameInput.value);
+                } else if (+editInfoDialog.dataset.player === 2) {
+                    player2.setName(nameInput.value);
+                }
+                updatePlayerInfoSection();
+                form.reset();
+                editInfoDialog.close();
             }
         });
     }
