@@ -121,6 +121,8 @@ body {
 
 main {
     display: grid;
+    align-items: start;
+    align-content: start;
 }
 
 button.restart {
