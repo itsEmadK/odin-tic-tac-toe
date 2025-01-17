@@ -135,6 +135,7 @@ button.restart {
     font-size: var(--restart-button-font-size);
     border-radius: var(--restart-button-border-radius);
     border: none;
+    cursor: pointer;
 }
 
 button.restart:hover {
