@@ -251,18 +251,34 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                     const player = turn === 1 ? player1 : player2;
                     const isCellAvailable = player.playTurn(i, j);
                     if (isCellAvailable) {
-                        if (
-                            gameController.getGameResult() === 0 ||
-                            gameController.getGameResult() === 1 ||
-                            gameController.getGameResult() === 2
-                        ) {
+                        if (gameController.getGameResult() === 0) {
                             isGameFinished = true;
+                        } else if (gameController.getGameResult() === 1) {
+                            isGameFinished = true;
+                            player1.incScore();
+                        } else if (gameController.getGameResult() === 2) {
+                            isGameFinished = true;
+                            player2.incScore();
                         }
                         updateCellsGrid();
+                        updatePlayerInfoSection();
                     }
                 }
             }
         });
+    }
+
+    function updatePlayerInfoSection() {
+        const player1NameDiv = document.querySelector(".player1-name");
+        const player1ScoreDiv = document.querySelector(".player1-score");
+        const player2NameDiv = document.querySelector(".player2-name");
+        const player2ScoreDiv = document.querySelector(".player2-score");
+
+        player1NameDiv.innerText = player1.getName();
+        player1ScoreDiv.innerText = player1.getScore();
+
+        player2NameDiv.innerText = player2.getName();
+        player2ScoreDiv.innerText = player2.getScore();
     }
 
     return {
@@ -273,6 +289,9 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
 
 function createPlayer(name, marker, id) {
+
+    let score = 0;
+
     function getName() {
         return name;
     }
@@ -293,12 +312,22 @@ function createPlayer(name, marker, id) {
         return id;
     }
 
+    function incScore() {
+        score++;
+    }
+
+    function getScore() {
+        return score;
+    }
+
     return {
         getName,
         setName,
         getMarker,
         playTurn,
         getID,
+        incScore,
+        getScore,
     }
 
 }
