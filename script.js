@@ -164,7 +164,7 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
 
 
-// console.log(player1.playTurn(0, 1));
+console.log(player1.playTurn(0, 1));
 // showBoard();
 DOMController.updateCellsGrid();
 
