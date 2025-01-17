@@ -48,75 +48,6 @@ const gameController = (function (gameBoard) {
 
     let turn = 1;
 
-    function getGameResult() {
-        //Check rows:
-        for (let i = 0; i < 3; i++) {
-            if (
-                gameBoard.getCell(i, 0) === gameBoard.getCell(i, 1) &&
-                gameBoard.getCell(i, 1) === gameBoard.getCell(i, 2)
-            ) {
-                return gameBoard.getCell(i, 0);
-            }
-
-        }
-
-        //Check columns:
-        for (let j = 0; j < 3; j++) {
-            if (
-                gameBoard.getCell(0, j) === gameBoard.getCell(1, j) &&
-                gameBoard.getCell(1, j) === gameBoard.getCell(2, j)
-            ) {
-                return gameBoard.getCell(0, j);
-            }
-
-        }
-
-        //Check main diagonal:
-        if (
-            gameBoard.getCell(0, 0) === gameBoard.getCell(1, 1) &&
-            gameBoard.getCell(1, 1) === gameBoard.getCell(2, 2
-            )
-        ) {
-            return gameBoard.getCell(0, 0);
-        }
-
-
-        //Check secondary diagonal:
-        if (
-            gameBoard.getCell(2, 0) === gameBoard.getCell(1, 1) &&
-            gameBoard.getCell(1, 1) === gameBoard.getCell(0, 2)
-        ) {
-            return gameBoard.getCell(0, 0);
-        }
-
-
-        //Check for tie:
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (gameBoard.getCell(i, j) === null) {
-                    return null; //Game is not finished yet.
-                }
-            }
-        }
-
-
-        return 0; //It's a tie.
-
-
-    }
-
-    function playTurn(i, j, player) {
-        const isMoveValid = gameBoard.setCell(i, j, player);
-        if (isMoveValid) {
-            turn = (turn === 1) ? 2 : 1;
-        }
-        return isMoveValid;
-    }
-
-    function getTurn() {
-        return turn;
-    }
-
 
     function getWinningSequence() {
         const winningSequence = [];
@@ -189,6 +120,31 @@ const gameController = (function (gameBoard) {
         return []; //It's a tie.
 
 
+    }
+
+    
+    function getGameResult() {
+        const winningSequence = getWinningSequence();
+        if (winningSequence === null) {
+            return null; //Game not over yet;
+        } else if (winningSequence.length === 0) {
+            return 0; //Tie;
+        } else {
+            const winner = gameBoard.getCell(winningSequence[0].i, winningSequence[0].j);
+            return winner;
+        }
+    }
+
+    function playTurn(i, j, player) {
+        const isMoveValid = gameBoard.setCell(i, j, player);
+        if (isMoveValid) {
+            turn = (turn === 1) ? 2 : 1;
+        }
+        return isMoveValid;
+    }
+
+    function getTurn() {
+        return turn;
     }
 
     function reset() {
