@@ -165,12 +165,16 @@ const gameController = (function (gameBoard) {
 const DOMController = (function (gameController, gameBoard, player1, player2) {
 
     const cellsGridDiv = document.querySelector("div.cells-grid");
+    const resetButton = document.querySelector("button.restart");
     let isGameFinished = false;
-
 
     addHoverListenerToCells();
     addClickListenerToCells();
     updateCellsGrid();
+
+    resetButton.addEventListener("click", () => {
+        cleanTheGameBoard();
+    });
 
     function updateCellsGrid() {
         cellsGridDiv.innerHTML = "";
@@ -210,6 +214,12 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                 cellsGridDiv.appendChild(tempCell);
             }
         }
+    }
+
+    function cleanTheGameBoard() {
+        gameController.reset();
+        isGameFinished = false;
+        updateCellsGrid();
     }
 
     function addHoverListenerToCells() {
