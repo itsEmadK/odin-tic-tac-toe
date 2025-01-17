@@ -1,5 +1,5 @@
-const player1 = createPlayer("Emad", "x", 1);
-const player2 = createPlayer("Sag", "o", 2);
+const player1 = createPlayer("Player1", "x", 1);
+const player2 = createPlayer("Player2", "o", 2);
 
 const gameBoard = (function () {
     let board;
