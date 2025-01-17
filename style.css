@@ -134,3 +134,11 @@ button.restart {
     border-radius: var(--restart-button-border-radius);
     border: none;
 }
+
+button.restart:hover {
+    background-color: #434c52;
+}
+
+button.restart:active {
+    background-color: #292f33;
+}
