@@ -176,10 +176,14 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
     player1NameDiv.addEventListener("click", () => {
         editInfoDialog.dataset.player = 1;
+        const nameInput = editInfoDialog.querySelector("input#player-name");
+        nameInput.value = player1.getName();
         editInfoDialog.showModal();
     });
     player2NameDiv.addEventListener("click", () => {
         editInfoDialog.dataset.player = 2;
+        const nameInput = editInfoDialog.querySelector("input#player-name");
+        nameInput.value = player2.getName();
         editInfoDialog.showModal();
     });
 
