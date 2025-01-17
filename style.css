@@ -14,6 +14,11 @@
     --varela-round-regular: varela-round-regular;
     --header-font-color: #b0e4db;
     --header-bg-color: #4c5c68;
+    --body-bg-color: #c5c3c6;
+}
+
+body {
+    background-color: var(--body-bg-color);
 }
 
 
