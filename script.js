@@ -135,12 +135,34 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
     const cellsGridDiv = document.querySelector("div.cells-grid");
 
+
+    addHoverListenerToCells();
+    updateCellsGrid();
+
     function updateCellsGrid() {
         cellsGridDiv.innerHTML = "";
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("cell");
 
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                const tempCell = cellDiv.cloneNode(true);
+                tempCell.dataset.i = i;
+                tempCell.dataset.j = j;
+                if (gameBoard.getCell(i, j) === 1) {
+                    tempCell.classList.add("occupied")
+                    tempCell.innerText = player1.getMarker();
+                } else if (gameBoard.getCell(i, j) === 2) {
+                    tempCell.classList.add("occupied")
+                    tempCell.innerText = player2.getMarker();
+                }
+                cellsGridDiv.appendChild(tempCell);
+            }
+        }
+    }
 
+
+    function addHoverListenerToCells() {
         cellsGridDiv.addEventListener("mouseover", (e) => {
             if ([...e.target.classList].includes("cell")) {
                 const cellDiv = e.target;
@@ -159,23 +181,6 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                 }
             }
         });
-
-
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                const tempCell = cellDiv.cloneNode(true);
-                tempCell.dataset.i = i;
-                tempCell.dataset.j = j;
-                if (gameBoard.getCell(i, j) === 1) {
-                    tempCell.classList.add("occupied")
-                    tempCell.innerText = player1.getMarker();
-                } else if (gameBoard.getCell(i, j) === 2) {
-                    tempCell.classList.add("occupied")
-                    tempCell.innerText = player2.getMarker();
-                }
-                cellsGridDiv.appendChild(tempCell);
-            }
-        }
     }
 
     return {
