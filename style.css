@@ -19,12 +19,12 @@
 
 body {
     background-color: var(--body-bg-color);
+    font-family: var(--varela-round-regular);
 }
 
 
 header {
     font-size: 3.5rem;
-    font-family: var(--varela-round-regular);
     padding: 0.3em;
     text-align: center;
     background-color: var(--header-bg-color);
@@ -36,7 +36,6 @@ header {
     font-size: 3rem;
     display: flex;
     gap: 0.5em;
-    font-family: var(--varela-round-regular);
     padding: 0.5em 4em;
     color: #46494b;
 }
