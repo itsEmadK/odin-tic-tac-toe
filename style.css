@@ -44,3 +44,7 @@ header {
 .players-info-container .player1-score {
     margin-right: auto;
 }
+
+.players-info-container div[class*="score"] {
+    font-weight: bold;
+}
