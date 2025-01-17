@@ -202,6 +202,15 @@ dialog.edit-player-info form input {
     font-size: 0.25em;
     position: absolute;
     opacity: 0.8;
-    top: -1em;
-    left: 0.33em;
+    text-wrap-mode: nowrap;
+}
+
+.player1-name:hover::before {
+    left: -6em;
+    top: 1.8em;
+}
+
+.player2-name:hover::before {
+    right: -6em;
+    top: 1.8em;
 }
