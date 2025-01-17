@@ -140,6 +140,27 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("cell");
 
+
+        cellsGridDiv.addEventListener("mouseover", (e) => {
+            if ([...e.target.classList].includes("cell")) {
+                const cellDiv = e.target;
+                const turn = gameController.getTurn();
+                if (![...cellDiv.classList].includes("occupied")) {
+                    cellDiv.innerText = turn === 1 ? player1.getMarker() : player2.getMarker();
+                }
+            }
+        });
+
+        cellsGridDiv.addEventListener("mouseout", (e) => {
+            if ([...e.target.classList].includes("cell")) {
+                const cellDiv = e.target;
+                if (![...cellDiv.classList].includes("occupied")) {
+                    cellDiv.innerText = "";
+                }
+            }
+        });
+
+
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 const tempCell = cellDiv.cloneNode(true);
@@ -152,20 +173,6 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                     tempCell.classList.add("occupied")
                     tempCell.innerText = player2.getMarker();
                 }
-
-                const turn = gameController.getTurn();
-                tempCell.addEventListener("mouseenter", () => {
-                    if (![...tempCell.classList].includes("occupied")) {
-                        tempCell.innerText = turn === 1 ? player1.getMarker() : player2.getMarker();
-                    }
-                });
-
-                tempCell.addEventListener("mouseleave", () => {
-                    if (![...tempCell.classList].includes("occupied")) {
-                        tempCell.innerText = "";
-                    }
-                });
-
                 cellsGridDiv.appendChild(tempCell);
             }
         }
