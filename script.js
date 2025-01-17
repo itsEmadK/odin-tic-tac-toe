@@ -187,6 +187,21 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
         editInfoDialog.close();
     });
 
+    saveInfoButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const form = document.querySelector("dialog.edit-player-info form");
+        const nameInput = document.querySelector("input#player-name");
+        if (form.reportValidity()) {
+            if (+editInfoDialog.dataset.player === 1) {
+                player1.setName(nameInput.value);
+            } else if (+editInfoDialog.dataset.player === 2) {
+                player2.setName(nameInput.value);
+            }
+            updatePlayerInfoSection();
+            form.reset();
+            editInfoDialog.close();
+        }
+    });
 
 
     addHoverListenerToCells();
