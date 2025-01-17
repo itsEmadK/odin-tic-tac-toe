@@ -30,3 +30,17 @@ header {
     background-color: var(--header-bg-color);
     color: var(--header-font-color);
 }
+
+
+.players-info-container {
+    font-size: 3rem;
+    display: flex;
+    gap: 0.5em;
+    font-family: var(--varela-round-regular);
+    padding: 0.5em 4em;
+    color: #46494b;
+}
+
+.players-info-container .player1-score {
+    margin-right: auto;
+}
