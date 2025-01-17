@@ -167,6 +167,8 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     const cellsGridDiv = document.querySelector("div.cells-grid");
     const resetButton = document.querySelector("button.restart");
     const editInfoDialog = document.querySelector("dialog.edit-player-info");
+    const saveInfoButton = document.querySelector("button.save");
+    const discardInfoButton = document.querySelector("button.discard");
     const player1NameDiv = document.querySelector(".player1-name");
     const player2NameDiv = document.querySelector(".player2-name");
     let isGameFinished = false;
@@ -181,6 +183,9 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
         editInfoDialog.showModal();
     });
 
+    discardInfoButton.addEventListener("click", () => {
+        editInfoDialog.close();
+    });
 
 
 
