@@ -15,6 +15,7 @@
     --header-font-color: #b0e4db;
     --header-bg-color: #4c5c68;
     --body-bg-color: #c5c3c6;
+    --player-info-font-color: #46494b;
 }
 
 body {
@@ -39,12 +40,17 @@ header {
     grid-template-areas: ". info1 info2 .";
     gap: 3em;
     padding: 1em 0;
-    color: #46494b;
+    color: var(--player-info-font-color);
 }
 
 .player-info {
     display: flex;
     gap: 0.5em;
+    padding-bottom: 4px;
+}
+
+.player-info.player-to-play {
+    border-bottom: 2px solid var(--player-info-font-color);
 }
 
 .player-info:first-child {
