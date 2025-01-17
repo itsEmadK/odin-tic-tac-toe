@@ -148,4 +148,6 @@ button.restart:active {
 
 footer {
     justify-self: center;
+    padding-top: 4em;
+    padding-bottom: 0.5em;
 }
