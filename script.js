@@ -106,15 +106,15 @@ const gameController = (function (gameBoard) {
     }
 
     function playTurn(i, j, player) {
-        if (turn !== player) {
-            return false;
-        } else {
-            const isMoveValid = gameBoard.setCell(i, j, player);
-            if (isMoveValid) {
-                turn = (turn === 1) ? 2 : 1;
-            }
-            return isMoveValid;
+        const isMoveValid = gameBoard.setCell(i, j, player);
+        if (isMoveValid) {
+            turn = (turn === 1) ? 2 : 1;
         }
+        return isMoveValid;
+    }
+
+    function getTurn() {
+        return turn;
     }
 
     function reset() {
@@ -125,6 +125,7 @@ const gameController = (function (gameBoard) {
     return {
         getGameResult,
         playTurn,
+        getTurn,
         reset,
     };
 
@@ -151,6 +152,20 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                     tempCell.classList.add("occupied")
                     tempCell.innerText = player2.getMarker();
                 }
+
+                const turn = gameController.getTurn();
+                tempCell.addEventListener("mouseenter", () => {
+                    if (![...tempCell.classList].includes("occupied")) {
+                        tempCell.innerText = turn === 1 ? player1.getMarker() : player2.getMarker();
+                    }
+                });
+
+                tempCell.addEventListener("mouseleave", () => {
+                    if (![...tempCell.classList].includes("occupied")) {
+                        tempCell.innerText = "";
+                    }
+                });
+
                 cellsGridDiv.appendChild(tempCell);
             }
         }
