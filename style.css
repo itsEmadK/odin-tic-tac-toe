@@ -75,6 +75,8 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
+    height: auto;
+    aspect-ratio: 1;
     border: 1px solid var(--header-bg-color);
     grid-area: grid;
 }
