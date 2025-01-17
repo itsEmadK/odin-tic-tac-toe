@@ -180,3 +180,24 @@ dialog.edit-player-info form input {
     font-size: 1rem;
     margin-bottom: 1em;
 }
+
+
+.player1-name,
+.player2-name {
+    cursor: pointer;
+}
+
+.player1-name:hover,
+.player2-name:hover {
+    position: relative;
+}
+
+.player1-name:hover::before,
+.player2-name:hover::before {
+    content: "Click to edit";
+    font-size: 0.25em;
+    position: absolute;
+    opacity: 0.8;
+    top: -1em;
+    left: 0.33em;
+}
