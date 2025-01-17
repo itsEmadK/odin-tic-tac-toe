@@ -171,6 +171,7 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     addHoverListenerToCells();
     addClickListenerToCells();
     updateCellsGrid();
+    updatePlayerInfoSection();
 
     resetButton.addEventListener("click", () => {
         cleanTheGameBoard();
