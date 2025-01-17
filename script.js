@@ -117,6 +117,80 @@ const gameController = (function (gameBoard) {
         return turn;
     }
 
+
+    function getWinningSequence() {
+        const winningSequence = [];
+        //Check rows:
+        for (let i = 0; i < 3; i++) {
+            if (
+                gameBoard.getCell(i, 0) === gameBoard.getCell(i, 1) &&
+                gameBoard.getCell(i, 1) === gameBoard.getCell(i, 2) &&
+                gameBoard.getCell(i, 2) !== null
+            ) {
+                winningSequence.push({ i: i, j: 0 });
+                winningSequence.push({ i: i, j: 1 });
+                winningSequence.push({ i: i, j: 2 });
+                return winningSequence;
+            }
+
+        }
+
+        //Check columns:
+        for (let j = 0; j < 3; j++) {
+            if (
+                gameBoard.getCell(0, j) === gameBoard.getCell(1, j) &&
+                gameBoard.getCell(1, j) === gameBoard.getCell(2, j) &&
+                gameBoard.getCell(2, j) !== null
+            ) {
+                winningSequence.push({ i: 0, j: j });
+                winningSequence.push({ i: 1, j: j });
+                winningSequence.push({ i: 2, j: j });
+                return winningSequence;
+            }
+
+        }
+
+        //Check main diagonal:
+        if (
+            gameBoard.getCell(0, 0) === gameBoard.getCell(1, 1) &&
+            gameBoard.getCell(1, 1) === gameBoard.getCell(2, 2) &&
+            gameBoard.getCell(2, 2) !== null
+        ) {
+            winningSequence.push({ i: 0, j: 0 });
+            winningSequence.push({ i: 1, j: 1 });
+            winningSequence.push({ i: 2, j: 2 });
+            return winningSequence;
+        }
+
+
+        //Check secondary diagonal:
+        if (
+            gameBoard.getCell(2, 0) === gameBoard.getCell(1, 1) &&
+            gameBoard.getCell(1, 1) === gameBoard.getCell(0, 2) &&
+            gameBoard.getCell(0, 2) !== null
+        ) {
+            winningSequence.push({ i: 2, j: 0 });
+            winningSequence.push({ i: 1, j: 1 });
+            winningSequence.push({ i: 0, j: 2 });
+            return winningSequence;
+        }
+
+
+        //Check for tie:
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (gameBoard.getCell(i, j) === null) {
+                    return null; //Game is not finished yet.
+                }
+            }
+        }
+
+
+        return []; //It's a tie.
+
+
+    }
+
     function reset() {
         gameBoard.clearBoard();
         turn = 1;
@@ -126,6 +200,7 @@ const gameController = (function (gameBoard) {
         getGameResult,
         playTurn,
         getTurn,
+        getWinningSequence,
         reset,
     };
 
