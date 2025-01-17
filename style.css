@@ -16,6 +16,7 @@
     --header-bg-color: #4c5c68;
     --body-bg-color: #c5c3c6;
     --player-info-font-color: #46494b;
+    --finished-cell-bg-color: rgb(232, 232, 232);
 }
 
 body {
@@ -93,11 +94,16 @@ header {
     justify-content: center;
 }
 
+.cell.finished:not(.winner) {
+    background-color: var(--finished-cell-bg-color);
+    opacity: 50%;
+}
+
 .cell.winner {
     background-color: greenyellow;
 }
 
-.cell:not(.occupied):hover {
+.cell:not(.occupied):not(.finished):hover {
     background-color: var(--header-font-color);
     color: rgb(0 0 0 /30%);
 }

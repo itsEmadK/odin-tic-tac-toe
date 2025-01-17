@@ -196,6 +196,9 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                     tempCell.innerText = player2.getMarker();
                 }
 
+                if (isGameFinished) {
+                    tempCell.classList.add("finished");
+                }
 
                 winningSequence.forEach((cell) => {
                     if (cell.i === +tempCell.dataset.i && cell.j === +tempCell.dataset.j) {
