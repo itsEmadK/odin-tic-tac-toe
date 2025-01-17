@@ -309,6 +309,20 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                 editInfoDialog.close();
             }
         });
+
+        editInfoDialog.addEventListener("click", (e) => {
+            const actuallyClicked = !(e.clientX === 0 && e.clientY === 0);
+            const rect = e.target.getBoundingClientRect();
+            const clickedInside = (
+                e.clientX >= rect.left &&
+                e.clientX <= rect.right &&
+                e.clientY >= rect.top &&
+                e.clientY <= rect.bottom
+            );
+            if (actuallyClicked && !clickedInside) {
+                editInfoDialog.close();
+            }
+        });
     }
 
     function updatePlayerInfoSection() {
