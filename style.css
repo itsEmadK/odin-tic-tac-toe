@@ -33,15 +33,26 @@ header {
 
 
 .players-info-container {
-    font-size: 3rem;
-    display: flex;
-    gap: 0.5em;
-    padding: 0.5em 4em;
+    font-size: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto auto 1fr;
+    grid-template-areas: ". info1 info2 .";
+    gap: 3em;
+    padding: 1em 0;
     color: #46494b;
 }
 
-.players-info-container .player1-score {
-    margin-right: auto;
+.player-info {
+    display: flex;
+    gap: 0.5em;
+}
+
+.player-info:first-child {
+    grid-area: info1;
+}
+
+.player-info:last-child {
+    grid-area: info2;
 }
 
 .players-info-container div[class*="score"] {
