@@ -122,7 +122,7 @@ const gameController = (function (gameBoard) {
 
     }
 
-    
+
     function getGameResult() {
         const winningSequence = getWinningSequence();
         if (winningSequence === null) {
@@ -176,6 +176,12 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("cell");
 
+        const gameResult = gameController.getGameResult();
+        let winningSequence = [];
+        if (gameResult === 1 || gameResult === 2) {
+            winningSequence = gameController.getWinningSequence();
+        }
+
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 const tempCell = cellDiv.cloneNode(true);
@@ -188,6 +194,15 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                     tempCell.classList.add("occupied")
                     tempCell.innerText = player2.getMarker();
                 }
+
+
+                winningSequence.forEach((cell) => {
+                    if (cell.i === +tempCell.dataset.i && cell.j === +tempCell.dataset.j) {
+                        tempCell.classList.add("winner");
+                    }
+                });
+
+
                 cellsGridDiv.appendChild(tempCell);
             }
         }

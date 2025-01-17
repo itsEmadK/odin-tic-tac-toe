@@ -93,6 +93,9 @@ header {
     justify-content: center;
 }
 
+.cell.winner {
+    background-color: greenyellow;
+}
 
 .cell:not(.occupied):hover {
     background-color: var(--header-font-color);
