@@ -40,7 +40,6 @@ const gameBoard = (function () {
         clearBoard,
         setCell,
         getCell,
-        board, //Just exposing it for test.
     };
 })()
 
