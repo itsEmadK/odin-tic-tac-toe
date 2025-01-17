@@ -17,6 +17,10 @@
     --body-bg-color: #c5c3c6;
     --player-info-font-color: #46494b;
     --finished-cell-bg-color: rgb(232, 232, 232);
+    --restart-button-padding: 16px;
+    --restart-button-margin-top: 32px;
+    --restart-button-font-size: 3rem;
+    --restart-button-border-radius: 8px;
 }
 
 body {
@@ -114,3 +118,19 @@ body {
     height: 100vh;
 }
 
+
+main {
+    display: grid;
+}
+
+button.restart {
+    justify-self: center;
+    background-color: var(--header-bg-color);
+    color: var(--header-font-color);
+    font-family: var(--varela-round-regular);
+    padding: var(--restart-button-padding);
+    margin-top: var(--restart-button-margin-top);
+    font-size: var(--restart-button-font-size);
+    border-radius: var(--restart-button-border-radius);
+    border: none;
+}
