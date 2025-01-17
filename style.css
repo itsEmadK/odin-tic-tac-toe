@@ -214,3 +214,7 @@ dialog.edit-player-info form input {
     right: -6em;
     top: 1.8em;
 }
+
+.cell {
+    cursor: default;
+}
