@@ -87,7 +87,9 @@ header {
     aspect-ratio: 1;
     background-color: white;
     border: 1px solid var(--header-bg-color);
+    align-self: center;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
