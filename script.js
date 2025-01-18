@@ -391,6 +391,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
         playTurn = function (boardState) {
             //...//
             function evaluateState(boardState) {
+                //Check rows:
                 for (let i = 0; i < 3; i++) {
                     if (
                         boardState[i][0] === boardState[i][1] &&
@@ -398,6 +399,17 @@ function createPlayer(name, marker, id, game, isAI = false) {
                         boardState[i][2] !== null
                     ) {
                         return boardState[i][2]
+                    }
+                }
+
+                //Check columns:
+                for (let j = 0; j < 3; j++) {
+                    if (
+                        boardState[0][j] === boardState[1][j] &&
+                        boardState[1][j] === boardState[2][j] &&
+                        boardState[2][j] !== null
+                    ) {
+                        return boardState[2][j]
                     }
                 }
             }
