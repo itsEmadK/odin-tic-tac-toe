@@ -227,6 +227,8 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
         gameController.reset();
         isGameFinished = false;
         updateCellsGrid();
+        updatePlayerInfoSection();
+        updatePlayerTurnDisplay();
     }
 
     function addHoverListenerToCells() {
