@@ -172,9 +172,6 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     const player2NameDiv = document.querySelector(".player2-name");
     let isGameFinished = false;
 
-    init();
-
-
     resetButton.addEventListener("click", () => {
         cleanTheGameBoard();
     });
