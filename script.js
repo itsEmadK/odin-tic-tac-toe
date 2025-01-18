@@ -33,6 +33,12 @@ const gameBoard = (function () {
     function getCell(i, j) {
         return board[i][j];
     }
+
+    function getBoard() {
+        return board.slice().map((row) => {
+            row.slice();
+        });
+    }
     return {
         clearBoard,
         setCell,
