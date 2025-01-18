@@ -419,27 +419,33 @@ function createPlayer(name, marker, id, game, isAI = false) {
                 }
 
                 const possibleMoves = getPossibleMoves(boardState);
-                let bestValue = isMaximizer ? (-Infinity) : Infinity;
-                let bestMove = null;
 
+                const moves = []
                 for (let move of possibleMoves) {
                     const newState = boardState.slice().map(row => row.slice());
                     newState[move.i][move.j] = isMaximizer ? id : opponentID;
                     const v = getBestMove(!isMaximizer, newState).value;
-                    if (isMaximizer) {
-                        if (v > bestValue) {
-                            bestValue = v;
-                            bestMove = move;
+                    moves.push({ value: v, move: move });
+                }
+                if (isMaximizer) {
+                    moves.sort((a, b) => {
+                        if (a.value > b.value) {
+                            return -1;
+                        } else {
+                            return 1;
                         }
-                    } else {
-                        if (v < bestValue) {
-                            bestValue = v;
-                            bestMove = move;
+                    });
+                } else {
+                    moves.sort((a, b) => {
+                        if (a.value < b.value) {
+                            return -1;
+                        } else {
+                            return 1;
                         }
-                    }
+                    });
                 }
 
-                return { value: bestValue, move: bestMove };
+                return moves[0];
 
             }
             function evaluateState(boardState) {
