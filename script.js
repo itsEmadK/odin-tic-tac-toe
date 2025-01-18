@@ -172,16 +172,22 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     const player2NameDiv = document.querySelector(".player2-name");
     let isGameFinished = false;
 
-    addHoverListenerToCells();
-    addClickListenerToCells();
-    updateCellsGrid();
-    updatePlayerInfoSection();
-    updatePlayerTurnDisplay();
-    addDialogRelatedListeners();
+    init();
+
 
     resetButton.addEventListener("click", () => {
         cleanTheGameBoard();
     });
+
+
+    function init() {
+        addHoverListenerToCells();
+        addClickListenerToCells();
+        updateCellsGrid();
+        updatePlayerInfoSection();
+        updatePlayerTurnDisplay();
+        addDialogRelatedListeners();
+    }
 
     function updateCellsGrid() {
         cellsGridDiv.innerHTML = "";
@@ -350,10 +356,13 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     }
 
     return {
-        updateCellsGrid,
+        init,
     };
 
 })(gameController, gameBoard, player1, player2);
+
+
+DOMController.init();
 
 
 function createPlayer(name, marker, id) {
