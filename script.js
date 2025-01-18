@@ -163,8 +163,8 @@ const gameController = (function (gameBoard) {
 
 })(gameBoard);
 
-const player1 = createPlayer("Player1", "x", 1, gameController);
-const player2 = createPlayer("Player2", "o", 2, gameController, true);
+const player1 = createPlayer("Player1", "x", 1, gameController, true);
+const player2 = createPlayer("Player2", "o", 2, gameController);
 
 const DOMController = (function (gameController, gameBoard, player1, player2) {
 
@@ -183,6 +183,9 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
 
     function init() {
+        if (player1.isAIPlayer()) {
+            player1.playTurn(gameBoard.getBoard())
+        }
         addHoverListenerToCells();
         addClickListenerToCells();
         updateCellsGrid();
@@ -228,6 +231,9 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     function cleanTheGameBoard() {
         gameController.reset();
         isGameFinished = false;
+        if (player1.isAIPlayer()) {
+            player1.playTurn(gameBoard.getBoard())
+        }
         updateCellsGrid();
         updatePlayerInfoSection();
         updatePlayerTurnDisplay();
@@ -268,6 +274,11 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                     const player = turn === 1 ? player1 : player2;
                     const isCellAvailable = player.playTurn(i, j);
                     if (isCellAvailable) {
+                        if (player === player1 && player2.isAIPlayer()) {
+                            player2.playTurn(gameBoard.getBoard());
+                        } else if (player === player2 && player1.isAIPlayer()) {
+                            player1.playTurn(gameBoard.getBoard());
+                        }
                         if (gameController.getGameResult() === 0) {
                             isGameFinished = true;
                         } else if (gameController.getGameResult() === 1) {
