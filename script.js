@@ -367,7 +367,7 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 DOMController.init();
 
 
-function createPlayer(name, marker, id) {
+function createPlayer(name, marker, id, isAI = false) {
 
     let score = 0;
 
@@ -383,8 +383,16 @@ function createPlayer(name, marker, id) {
         return marker;
     }
 
-    function playTurn(i, j) {
-        return gameController.playTurn(i, j, id);
+    let playTurn;
+    if (isAI) {
+        playTurn = function (boardState) {
+            //...//
+        }
+    } else {
+        playTurn = function (i, j) {
+            return gameController.playTurn(i, j, id);
+        }
+
     }
 
     function getID() {
@@ -399,6 +407,10 @@ function createPlayer(name, marker, id) {
         return score;
     }
 
+    function isAIPlayer() {
+
+    }
+
     return {
         getName,
         setName,
@@ -407,6 +419,7 @@ function createPlayer(name, marker, id) {
         getID,
         incScore,
         getScore,
+        isAIPlayer,
     }
 
 }
