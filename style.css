@@ -43,8 +43,9 @@ header {
     display: grid;
     grid-template-columns: 1fr auto auto 1fr;
     grid-template-areas: ". info1 info2 .";
-    gap: 3em;
+    gap: 1em;
     padding: 0.75em;
+    align-items: center;
     color: var(--player-info-font-color);
 }
 
@@ -54,20 +55,22 @@ header {
     padding-bottom: 4px;
 }
 
-.player-info.player-to-play {
+.player-to-play {
     border-bottom: 2px solid var(--player-info-font-color);
 }
 
-.player-info:first-child {
-    grid-area: info1;
-}
-
-.player-info:last-child {
-    grid-area: info2;
-}
-
-.players-info-container div[class*="score"] {
+.player1-score,
+.player2-score {
     font-weight: bold;
+    font-size: 1.1em;
+}
+
+.player1-name {
+    justify-self: end;
+}
+
+.player2-name {
+    justify-self: start;
 }
 
 .cells-grid-container {
