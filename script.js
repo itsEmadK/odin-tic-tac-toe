@@ -35,14 +35,13 @@ const gameBoard = (function () {
     }
 
     function getBoard() {
-        return board.slice().map((row) => {
-            row.slice();
-        });
+        return board.slice().map((row) => row.slice());
     }
     return {
         clearBoard,
         setCell,
         getCell,
+        getBoard,
     };
 })()
 
@@ -165,7 +164,7 @@ const gameController = (function (gameBoard) {
 })(gameBoard);
 
 const player1 = createPlayer("Player1", "x", 1, gameController);
-const player2 = createPlayer("Player2", "o", 2, gameController);
+const player2 = createPlayer("Player2", "o", 2, gameController, true);
 
 const DOMController = (function (gameController, gameBoard, player1, player2) {
 
@@ -388,9 +387,13 @@ function createPlayer(name, marker, id, game, isAI = false) {
 
     let playTurn;
     if (isAI) {
-        playTurn = function (opponentID, boardState) {
+        playTurn = function (boardState) {
+            const opponentID = id === 1 ? 2 : 1;
 
-            getBestMove(true, boardState);
+            const m = getBestMove(true, boardState)
+            if (m.move !== null) {
+                gameController.playTurn(m.move.i, m.move.j, id);
+            }
 
             function getBestMove(isMaximizer, boardState) {
                 if (evaluateState(boardState) !== null) {
@@ -401,11 +404,12 @@ function createPlayer(name, marker, id, game, isAI = false) {
                 }
 
                 const possibleMoves = getPossibleMoves(boardState);
+                let bestValue = isMaximizer ? (-Infinity) : Infinity;
+                let bestMove = null;
+
                 for (let move of possibleMoves) {
-                    let bestValue = isMaximizer ? (-Infinity) : Infinity;
-                    let bestMove = null;
                     const newState = boardState.slice().map(row => row.slice());
-                    newState[move.i][move.j] = id;
+                    newState[move.i][move.j] = isMaximizer ? id : opponentID;
                     const { value: v, move: m } = getBestMove(!isMaximizer, newState);
                     if (isMaximizer) {
                         if (v > bestValue) {
@@ -442,7 +446,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
                         boardState[1][j] === boardState[2][j] &&
                         boardState[2][j] !== null
                     ) {
-                        return boardState[i][2] === opponentID ? -1 : 1;
+                        return boardState[0][j] === opponentID ? -1 : 1;
                     }
                 }
 
@@ -453,18 +457,29 @@ function createPlayer(name, marker, id, game, isAI = false) {
                     boardState[1][1] === boardState[2][2] &&
                     boardState[0][0] !== null
                 ) {
-                    return boardState[i][2] === opponentID ? -1 : 1;
+                    return boardState[2][2] === opponentID ? -1 : 1;
                 }
 
 
-                //Check main diagonal:
+                //Check second diagonal:
                 if (
                     boardState[2][0] === boardState[1][1] &&
                     boardState[1][1] === boardState[0][2] &&
                     boardState[0][2] !== null
                 ) {
-                    return boardState[i][2] === opponentID ? -1 : 1;
+                    return boardState[0][2] === opponentID ? -1 : 1;
                 }
+
+
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        if (boardState[i][j] === null) {
+                            return null;
+                        }
+                    }
+                }
+
+                return 0;
             }
             function getPossibleMoves(boardState) {
                 const output = [];
