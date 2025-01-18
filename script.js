@@ -433,6 +433,17 @@ function createPlayer(name, marker, id, game, isAI = false) {
                     return boardState[i][2] === opponentID ? -1 : 1;
                 }
             }
+            function getPossibleMoves(boardState) {
+                const output = [];
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        if (boardState[i][j] === null) {
+                            output.push({ i, j });
+                        }
+                    }
+                }
+                return output;
+            }
         }
     } else {
         playTurn = function (i, j) {
