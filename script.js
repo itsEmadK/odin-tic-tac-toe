@@ -369,6 +369,10 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 DOMController.init();
 
 
+
+
+
+
 function createPlayer(name, marker, id, game, isAI = false) {
 
     let score = 0;
@@ -527,9 +531,4 @@ function createPlayer(name, marker, id, game, isAI = false) {
         isAIPlayer,
     }
 
-}
-
-
-function showBoard() {
-    console.table(gameBoard.board);
 }
