@@ -412,6 +412,26 @@ function createPlayer(name, marker, id, game, isAI = false) {
                         return boardState[2][j]
                     }
                 }
+
+
+                //Check main diagonal:
+                if (
+                    boardState[0][0] === boardState[1][1] &&
+                    boardState[1][1] === boardState[2][2] &&
+                    boardState[0][0] !== null
+                ) {
+                    return boardState[0][0]
+                }
+
+
+                //Check main diagonal:
+                if (
+                    boardState[2][0] === boardState[1][1] &&
+                    boardState[1][1] === boardState[0][2] &&
+                    boardState[0][2] !== null
+                ) {
+                    return boardState[0][2]
+                }
             }
         }
     } else {
