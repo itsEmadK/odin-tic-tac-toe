@@ -425,7 +425,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
                 for (let move of possibleMoves) {
                     const newState = boardState.slice().map(row => row.slice());
                     newState[move.i][move.j] = isMaximizer ? id : opponentID;
-                    const { value: v, move: m } = getBestMove(!isMaximizer, newState);
+                    const v = getBestMove(!isMaximizer, newState).value;
                     if (isMaximizer) {
                         if (v > bestValue) {
                             bestValue = v;
