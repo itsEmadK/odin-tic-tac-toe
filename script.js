@@ -390,6 +390,17 @@ function createPlayer(name, marker, id, game, isAI = false) {
     if (isAI) {
         playTurn = function (boardState) {
             //...//
+            function evaluateState(boardState) {
+                for (let i = 0; i < 3; i++) {
+                    if (
+                        boardState[i][0] === boardState[i][1] &&
+                        boardState[i][1] === boardState[i][2] &&
+                        boardState[i][2] !== null
+                    ) {
+                        return boardState[i][2]
+                    }
+                }
+            }
         }
     } else {
         playTurn = function (i, j) {
