@@ -1,6 +1,3 @@
-const player1 = createPlayer("Player1", "x", 1);
-const player2 = createPlayer("Player2", "o", 2);
-
 const gameBoard = (function () {
     let board;
     initBoard();
@@ -160,6 +157,9 @@ const gameController = (function (gameBoard) {
     };
 
 })(gameBoard);
+
+const player1 = createPlayer("Player1", "x", 1, gameController);
+const player2 = createPlayer("Player2", "o", 2, gameController);
 
 const DOMController = (function (gameController, gameBoard, player1, player2) {
 
@@ -367,7 +367,7 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 DOMController.init();
 
 
-function createPlayer(name, marker, id, isAI = false) {
+function createPlayer(name, marker, id, game, isAI = false) {
 
     let score = 0;
 
@@ -390,7 +390,7 @@ function createPlayer(name, marker, id, isAI = false) {
         }
     } else {
         playTurn = function (i, j) {
-            return gameController.playTurn(i, j, id);
+            return game.playTurn(i, j, id);
         }
 
     }
