@@ -411,7 +411,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
     }
 
     function isAIPlayer() {
-
+        return isAI;
     }
 
     return {
