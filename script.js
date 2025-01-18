@@ -176,6 +176,7 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
     addClickListenerToCells();
     updateCellsGrid();
     updatePlayerInfoSection();
+    updatePlayerTurnDisplay();
     addDialogRelatedListeners();
 
     resetButton.addEventListener("click", () => {
@@ -268,6 +269,7 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
                         }
                         updateCellsGrid();
                         updatePlayerInfoSection();
+                        updatePlayerTurnDisplay();
                     }
                 }
             }
@@ -335,6 +337,16 @@ const DOMController = (function (gameController, gameBoard, player1, player2) {
 
         player2NameDiv.innerText = player2.getName();
         player2ScoreDiv.innerText = player2.getScore();
+    }
+
+
+    function updatePlayerTurnDisplay() {
+        const turn = gameController.getTurn();
+        const oldTurn = turn === 1 ? 2 : 1;
+        let currentPlayerNameDiv = document.querySelector(`.player${turn}-name`);
+        let prevPlayerNameDiv = document.querySelector(`.player${oldTurn}-name`);
+        currentPlayerNameDiv.classList.add("player-to-play");
+        prevPlayerNameDiv.classList.remove("player-to-play");
     }
 
     return {

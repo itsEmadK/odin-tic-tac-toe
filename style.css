@@ -56,7 +56,8 @@ header {
 }
 
 .player-to-play {
-    border-bottom: 2px solid var(--player-info-font-color);
+    text-decoration: underline;
+    text-underline-offset: 8px;
 }
 
 .player1-score,
