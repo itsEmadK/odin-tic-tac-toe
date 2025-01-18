@@ -388,7 +388,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
 
     let playTurn;
     if (isAI) {
-        playTurn = function (boardState) {
+        playTurn = function (opponentID, boardState) {
             //...//
             function evaluateState(boardState) {
                 //Check rows:
@@ -398,7 +398,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
                         boardState[i][1] === boardState[i][2] &&
                         boardState[i][2] !== null
                     ) {
-                        return boardState[i][2]
+                        return boardState[i][2] === opponentID ? -1 : 1;
                     }
                 }
 
@@ -409,7 +409,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
                         boardState[1][j] === boardState[2][j] &&
                         boardState[2][j] !== null
                     ) {
-                        return boardState[2][j]
+                        return boardState[i][2] === opponentID ? -1 : 1;
                     }
                 }
 
@@ -420,7 +420,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
                     boardState[1][1] === boardState[2][2] &&
                     boardState[0][0] !== null
                 ) {
-                    return boardState[0][0]
+                    return boardState[i][2] === opponentID ? -1 : 1;
                 }
 
 
@@ -430,7 +430,7 @@ function createPlayer(name, marker, id, game, isAI = false) {
                     boardState[1][1] === boardState[0][2] &&
                     boardState[0][2] !== null
                 ) {
-                    return boardState[0][2]
+                    return boardState[i][2] === opponentID ? -1 : 1;
                 }
             }
         }
